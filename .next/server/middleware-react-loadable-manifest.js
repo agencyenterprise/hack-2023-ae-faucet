@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST={"index.tsx -> @/components/HomeBanner":{"id":"index.tsx -> @/components/HomeBanner","files":["static/chunks/components_HomeBanner_tsx.js"]}}
