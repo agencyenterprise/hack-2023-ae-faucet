@@ -3,6 +3,7 @@ import { Fragment, RefObject, useRef, useState } from "react";
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { Dialog, Transition } from '@headlessui/react'
+import { ethers } from "ethers";
 
 const HomeBanner = dynamic(() => import("@/components/HomeBanner"), {
   ssr: false,
@@ -10,6 +11,7 @@ const HomeBanner = dynamic(() => import("@/components/HomeBanner"), {
 
 export default function Home() {
   const [userAddress, setUserAddress] = useState<string>("");
+  const [userAddressIsValid, setUserAddressIsValid] = useState<boolean>(true);
   const [captchaToken, setCaptchaToken] = useState<string>();
   const [transactionHash, setTransactionHash] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +27,7 @@ export default function Home() {
 
   const handleSendMatic = async (e) => {
     e.preventDefault();
+
     const response = await axios.post('/api/sendMatic', {
       userAddress,
       captchaToken
@@ -41,6 +44,7 @@ export default function Home() {
 
   const handleChangeUserAddress = (e) => {
     setUserAddress(e.target.value);
+    setUserAddressIsValid(ethers.isAddress(e.target.value));
   };
 
   const handleChangeCaptcha = (token: string | null) => {
@@ -54,13 +58,19 @@ export default function Home() {
       <HomeBanner />
       <div className="flex justify-center space-x-2">
         <form onSubmit={handleSendMatic}>
-          <input 
-            type="text"
-            placeholder="Wallet you want to send MATIC to" 
-            className="input input-bordered input-primary w-full max-w-xl mb-3" 
-            value={userAddress}
-            onChange={handleChangeUserAddress}
-          />
+          <div className="mb-3">
+            <input 
+              type="text"
+              placeholder="Wallet you want to send MATIC to" 
+              className="input input-bordered input-primary w-full max-w-xl" 
+              value={userAddress}
+              onChange={handleChangeUserAddress}
+              required
+            />
+            {!userAddressIsValid && <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              Invalid address
+            </span>}
+          </div>
 
           <div className="mb-3">
             <ReCAPTCHA
@@ -74,7 +84,7 @@ export default function Home() {
           <button
             type="submit"
             className="btn w-full rounded-md px-4 py-2 text-white text-bold border border-transparent bg-orange-500 hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-            disabled={!captchaToken || !userAddress}
+            disabled={!captchaToken || !userAddress || !userAddressIsValid}
           >
             Send {process.env.NEXT_PUBLIC_MATIC_AMOUNT} MATIC to Mumbai network
           </button>
