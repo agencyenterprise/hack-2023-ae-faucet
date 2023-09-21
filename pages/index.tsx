@@ -1,16 +1,36 @@
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const HomeBanner = dynamic(() => import("@/components/HomeBanner"), {
   ssr: false,
 });
 
 export default function Home() {
+  const [userAddress, setUserAddress] = useState<string>();
+
+  const handleSendMatic = async (e) => {
+    e.preventDefault();
+    console.log({userAddress})
+  }
+
+  const handleChangeUserAddress = (e) => {
+    setUserAddress(e.target.value);
+  };
+
   return (
     <>
       <HomeBanner />
       <div className="flex justify-center space-x-2">
-        <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xl" />
-        <button className="btn bg-orange-500 hover:bg-orange-500 hover:bg-orange-700 border border-orange-500 text-white text-bold">Send me MATIC!</button>
+        <form onSubmit={handleSendMatic}>
+          <input 
+            type="text"
+            placeholder="Type here" 
+            className="input input-bordered input-secondary w-full max-w-xl" 
+            value={userAddress}
+            onChange={handleChangeUserAddress}
+          />
+          <button className="btn bg-orange-500 hover:bg-orange-500 border border-orange-500 text-white text-bold">Send me MATIC!</button>
+        </form>
       </div>
     </>
   );
