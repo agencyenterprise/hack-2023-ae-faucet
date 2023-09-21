@@ -17,6 +17,16 @@ button#headlessui-switch-\:r1\: > span {
   border-radius: 9999px !important;
 }
 
+.btn[disabled], .btn:disabled {
+  --tw-border-opacity: 0.2;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+}
+
+.input-primary {
+  color: hsl(var(--p) / var(--tw-border-opacity));
+}
+
 *:focus {
   outline: 0;
 }
