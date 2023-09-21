@@ -10,9 +10,23 @@ module.exports = {
       },
     },
   },
+
   plugins: [
+    require("daisyui"),
     require("@headlessui/tailwindcss"),
     function ({ addVariant }) {
       addVariant('child', '& > *');
-    }],
+    }
+  ],
+  daisyui: {
+    themes: [
+      {
+        extended: {
+          primary: '#ffa500',
+          secondary: '#765DBF',
+          // ".btn"
+        },
+      },
+    ],
+  },
 };
