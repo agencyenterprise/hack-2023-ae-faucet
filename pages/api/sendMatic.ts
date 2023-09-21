@@ -1,17 +1,25 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { ethers } from 'ethers';
+import clientPromise from '../../mongoClient';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  const client = await clientPromise;
+  const db = client.db("ae-faucet");
+
+  const requests = await db.collection("requests").find({}).toArray();
+  console.log(requests);
+
   try {
     const {
       userAddress,
       captchaToken,
     } = req.body;
+
     const response = await axios.post(
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRETKEY}&response=${captchaToken}`
     );
