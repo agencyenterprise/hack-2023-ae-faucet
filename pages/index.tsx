@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import axios from 'axios';
 
 const HomeBanner = dynamic(() => import("@/components/HomeBanner"), {
   ssr: false,
@@ -10,6 +11,9 @@ export default function Home() {
 
   const handleSendMatic = async (e) => {
     e.preventDefault();
+    axios.post('/api/sendMatic', {
+      userAddress
+    })
     console.log({userAddress})
   }
 

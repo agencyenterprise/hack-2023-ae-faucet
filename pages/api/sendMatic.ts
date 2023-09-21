@@ -5,10 +5,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-
+  console.log('fala tu')
 
   console.log(req.connection.remoteAddress) 
   console.log(req.socket.remoteAddress)
+
+  
 
   res.status(200).json({ });
 };
