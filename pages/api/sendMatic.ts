@@ -8,36 +8,62 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const client = await clientPromise;
-  const db = client.db("ae-faucet");
-
-  const requests = await db.collection("requests").find({}).toArray();
-  console.log(requests);
-
   try {
     const {
       userAddress,
       captchaToken,
     } = req.body;
 
+    const ipAddress = req.socket.remoteAddress;
+    console.log(req.headers['x-forwarded-for'], req.connection.remoteAddress, req.socket.remoteAddress);
+
+    const client = await clientPromise;
+    const db = client.db("ae-faucet");
+
     const response = await axios.post(
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRETKEY}&response=${captchaToken}`
     );
     
     if (response.data.success) { //reCaptcha verification successfull
-      const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
-      const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+      const requests = await db.collection("requests").find({
+        $or: [
+          { address: userAddress },
+          { ipAddress },
+        ],
+        timestamp: {
+          $gte: Date.now() - 24 * 60 * 60 * 1000,
+        }
+      }).toArray();
 
-      const tx = await wallet.sendTransaction({
-        to: userAddress,
-        value: ethers.parseEther(process.env.NEXT_PUBLIC_MATIC_AMOUNT),
-      });
+      if(requests.length == 0) {
+        const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+        const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
-      await tx.wait();
+        const tx = await wallet.sendTransaction({
+          to: userAddress,
+          value: ethers.parseEther(process.env.NEXT_PUBLIC_MATIC_AMOUNT),
+        });
 
-      res.status(200).json({
-        transactionHash: tx.hash,
-      });
+        await tx.wait();
+
+        await db.collection("requests").insertOne({
+          address: userAddress,
+          timestamp: Date.now(),
+          txHash: tx.hash,
+          amount: process.env.NEXT_PUBLIC_MATIC_AMOUNT,
+          ipAddress,
+        });
+
+        res.status(200).json({
+          success: true,
+          transactionHash: tx.hash,
+        });
+      } else {
+        res.status(200).json({
+          success: false,
+          message: "You have already requested MATIC recently, please try again later.",
+        });
+      }
     } else {
       // reCAPTCHA verification failed
       res.status(400).send('reCAPTCHA verification failed.');

@@ -14,7 +14,9 @@ export default function Home() {
   const [userAddressIsValid, setUserAddressIsValid] = useState<boolean>(true);
   const [captchaToken, setCaptchaToken] = useState<string>();
   const [transactionHash, setTransactionHash] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isWaiting, setIsWaiting] = useState(false);
   const recaptcha: RefObject<ReCAPTCHA> = useRef(null);
 
   function closeModal() {
@@ -27,19 +29,27 @@ export default function Home() {
 
   const handleSendMatic = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
+    setTransactionHash("");
+    setIsWaiting(true);
 
     const response = await axios.post('/api/sendMatic', {
       userAddress,
       captchaToken
     });
 
-    setTransactionHash(response.data.transactionHash);
+    setIsWaiting(false);
+
+    if (response.data.success) {
+      setTransactionHash(response.data.transactionHash);
+    } else {
+      setErrorMessage(response.data.message);
+    }
+
     openModal();
 
-    setUserAddress('');
+    setUserAddress("");
     recaptcha.current.reset();
-
-    console.log(response);
   }
 
   const handleChangeUserAddress = (e) => {
@@ -84,9 +94,9 @@ export default function Home() {
           <button
             type="submit"
             className="btn w-full rounded-md px-4 py-2 text-white text-bold border border-transparent bg-orange-500 hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-            disabled={!captchaToken || !userAddress || !userAddressIsValid}
+            disabled={!captchaToken || !userAddress || !userAddressIsValid || isWaiting}
           >
-            Send {process.env.NEXT_PUBLIC_MATIC_AMOUNT} MATIC to Mumbai network
+            {isWaiting ? "Sending, please wait..." : `Send ${process.env.NEXT_PUBLIC_MATIC_AMOUNT} MATIC to Mumbai network`}
           </button>
         </form>
       </div>
@@ -121,20 +131,26 @@ export default function Home() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Your Matic is on the way!
+                    {errorMessage ? "Oooops, something went wrong :)" : "Your Matic is on the way!"}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your request has been successfully submitted.<br/>
-                      <a
-                        className="text-blue-500"
-                        target="_blank"
-                        rel="noreferrer"
-                        href={`https://mumbai.polygonscan.com/tx/${transactionHash}`}
-                      >
-                        You can check the transaction status clicking here.
-                      </a>
-                    </p>
+                    {errorMessage ? (
+                      <p className="text-sm text-red-500">
+                        {errorMessage}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-gray-500">
+                        Your request has been successfully submitted.<br/>
+                        <a
+                          className="text-blue-500"
+                          target="_blank"
+                          rel="noreferrer"
+                          href={`https://mumbai.polygonscan.com/tx/${transactionHash}`}
+                        >
+                          You can check the transaction status clicking here.
+                        </a>
+                      </p>
+                    )}
                   </div>
 
                   <div className="mt-4">
