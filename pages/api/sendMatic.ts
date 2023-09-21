@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import { ethers } from 'ethers';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
@@ -7,14 +8,27 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
+    const {
+      userAddress,
+      captchaToken,
+    } = req.body;
     const response = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRETKEY}&response=${req.body.captchaToken}`
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRETKEY}&response=${captchaToken}`
     );
     
-    if (response.data.success) {
-      //reCaptcha verification successfull
+    if (response.data.success) { //reCaptcha verification successfull
+      const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+      const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+
+      const tx = await wallet.sendTransaction({
+        to: userAddress,
+        value: ethers.parseEther(process.env.NEXT_PUBLIC_MATIC_AMOUNT),
+      });
+
+      await tx.wait();
+
       res.status(200).json({
-        transactionHash: '123',
+        transactionHash: tx.hash,
       });
     } else {
       // reCAPTCHA verification failed
