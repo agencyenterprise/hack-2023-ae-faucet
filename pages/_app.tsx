@@ -65,9 +65,11 @@ function MyApp({ Component, pageProps }) {
           href="https://ae.studio"
           target="noopener _blank"
           rel="noopener noreferrer"
-          className="text-sm text-center text-white underline"
+          className="text-sm text-center text-white uppercase"
         >
-          {"🤖🤑 We built and sold a startup. Let's help you next. 🥹😻"}
+          <span className="mr-3">🎉</span>
+          We built and sold a startup. Let's help you next.
+          <span className="ml-3">🎉</span>
         </a>
       </div>
       <div className="flex flex-col justify-between w-full max-w-screen-xl px-4 mx-auto sm:px-2">
