@@ -10,10 +10,10 @@ import RightSideTree from "@/components/RightSideTree";
 function MyApp({ Component, pageProps }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F8974B] to-[#F85C4B] overflow-y-hidden overflow-x-hidden">
-      <div className="absolute bottom-0 left-[-150px] blur-sm">
+      <div className="absolute bottom-0 left-[-150px] blur-sm hidden lg:block">
         <LeftSideTree />
       </div>
-      <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden">
+      <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden hidden lg:block">
         <RightSideTree />
       </div>
       <Head>
