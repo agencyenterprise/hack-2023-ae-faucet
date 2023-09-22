@@ -4,10 +4,18 @@ import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LeftSideTree from "@/components/LeftSideTree";
+import RightSideTree from "@/components/RightSideTree";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-b from-[#F8974B] to-[#F85C4B]">
+      <div className="absolute bottom-0 left-[-150px] blur-sm">
+        <LeftSideTree />
+      </div>
+      <div className="absolute bottom-0 right-[-180px] blur-sm">
+        <RightSideTree />
+      </div>
       <Head>
         <link
           rel="stylesheet"
@@ -115,7 +123,7 @@ function MyApp({ Component, pageProps }) {
         </footer>
       </div>
       <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    </>
+    </div>
   );
 }
 
