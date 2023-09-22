@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }) {
           draggable
         />
         <div className="flex-grow" />
-        <footer className="flex flex-row items-center justify-center gap-4 p-2 mt-32 text-ae-orange">
+        {/* <footer className="flex flex-row items-center justify-center gap-4 p-2 mt-32 text-ae-orange">
           <h1 className="text-sm text-gray-500">{"Made with ❤️ by"}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@ function MyApp({ Component, pageProps }) {
               />
             </g>
           </svg>
-        </footer>
+        </footer> */}
       </div>
       <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     </div>
