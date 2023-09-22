@@ -62,7 +62,7 @@ function MyApp({ Component, pageProps }) {
           {"🤖🤑 We built and sold a startup. Let's help you next. 🥹😻"}
         </a>
       </div>
-      <div className="flex flex-col justify-between w-full max-w-screen-xl min-h-screen px-4 mx-auto sm:px-2">
+      <div className="flex flex-col justify-between w-full max-w-screen-xl px-4 mx-auto sm:px-2">
         <Navbar />
         <Component {...pageProps} />
         <ToastContainer
@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }) {
           draggable
         />
         <div className="flex-grow" />
-        <footer className="flex flex-row items-center justify-center gap-4 p-2 mt-20 mb-6 text-ae-orange">
+        <footer className="flex flex-row items-center justify-center gap-4 p-2 mt-32 text-ae-orange">
           <h1 className="text-sm text-gray-500">{"Made with ❤️ by"}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
