@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }) {
           content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
-      <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#F8974B] to-[#F85C4B]">
+      <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
         <a
           href="https://ae.studio"
           target="_blank"
