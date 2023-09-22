@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       captchaToken,
     } = req.body;
 
-    const ipAddress = req.socket.remoteAddress;
+    const ipAddress = `${req.headers['x-forwarded-for']}@${req.socket.remoteAddress}`;
     console.log(req.headers['x-forwarded-for'], req.connection.remoteAddress, req.socket.remoteAddress);
 
     const client = await clientPromise;
