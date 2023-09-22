@@ -19,8 +19,8 @@ export default function HomeBanner() {
           </h1>
           <a
             href="https://ae.studio/"
-            target="_blank"
-            rel="noreferrer"
+            target="noopener _blank"
+            rel="noopener noreferrer"
             className="mt-2 text-orange-300 text-center"
           >
             Get to know us

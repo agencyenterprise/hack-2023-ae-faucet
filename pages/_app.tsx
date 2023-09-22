@@ -63,8 +63,8 @@ function MyApp({ Component, pageProps }) {
       <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
         <a
           href="https://ae.studio"
-          target="_blank"
-          rel="noreferrer"
+          target="noopener _blank"
+          rel="noopener noreferrer"
           className="text-sm text-center text-white underline"
         >
           {"🤖🤑 We built and sold a startup. Let's help you next. 🥹😻"}

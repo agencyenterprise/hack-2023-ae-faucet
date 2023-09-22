@@ -181,7 +181,7 @@ export default function Home() {
                           {/* Your request has been successfully submitted.<br /> */}
                           {/* <a
                             className="text-blue-500"
-                            target="_blank"
+                            target="noopener _blank"
                             rel="noreferrer"
                             href={`https://mumbai.polygonscan.com/tx/${transactionHash}`}
                             >
@@ -193,7 +193,7 @@ export default function Home() {
                         </div>
                         <a
                           href="https://ae.studio/join-us"
-                          target="_blank"
+                          target="noopener _blank"
                           className="mt-5 inline-flex justify-center rounded-md px-4 py-2 text-sm font-medium text-white border border-transparent bg-orange-500 hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
                           onClick={closeModal}
                         >
@@ -202,7 +202,7 @@ export default function Home() {
                         <a
                           href="https://ae.studio"
                           className="text-orange-500 text-xs mt-7"
-                          target="_blank"
+                          target="noopener _blank"
                         >
                           LEARN MORE
                         </a>
