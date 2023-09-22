@@ -4,10 +4,18 @@ import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LeftSideTree from "@/components/LeftSideTree";
+import RightSideTree from "@/components/RightSideTree";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-b from-[#F8974B] to-[#F85C4B]">
+      <div className="absolute bottom-0 left-[-150px] blur-sm">
+        <LeftSideTree />
+      </div>
+      <div className="absolute bottom-0 right-[-180px] blur-sm">
+        <RightSideTree />
+      </div>
       <Head>
         <link
           rel="stylesheet"
@@ -52,7 +60,7 @@ function MyApp({ Component, pageProps }) {
           content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
-      <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#F8974B] to-[#F85C4B]">
+      <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
         <a
           href="https://ae.studio"
           target="_blank"
@@ -62,7 +70,7 @@ function MyApp({ Component, pageProps }) {
           {"🤖🤑 We built and sold a startup. Let's help you next. 🥹😻"}
         </a>
       </div>
-      <div className="flex flex-col justify-between w-full max-w-screen-xl min-h-screen px-4 mx-auto sm:px-2">
+      <div className="flex flex-col justify-between w-full max-w-screen-xl px-4 mx-auto sm:px-2">
         <Navbar />
         <Component {...pageProps} />
         <ToastContainer
@@ -74,7 +82,7 @@ function MyApp({ Component, pageProps }) {
           draggable
         />
         <div className="flex-grow" />
-        <footer className="flex flex-row items-center justify-center gap-4 p-2 mt-20 mb-6 text-ae-orange">
+        <footer className="flex flex-row items-center justify-center gap-4 p-2 mt-32 text-ae-orange">
           <h1 className="text-sm text-gray-500">{"Made with ❤️ by"}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +123,7 @@ function MyApp({ Component, pageProps }) {
         </footer>
       </div>
       <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    </>
+    </div>
   );
 }
 
