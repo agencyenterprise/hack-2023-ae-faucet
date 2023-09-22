@@ -25,6 +25,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     );
     
     if (response.data.success) { //reCaptcha verification successfull
+      const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+      const balance = await provider.getBalance(userAddress);
+
+      if (balance >= ethers.parseEther(process.env.MAX_BALANCE)) {
+        res.status(200).json({
+          success: false,
+          message: "Matic Tokens are ideally used to pay for gas, the address you're requesting from has enough to pay for gas.",
+        });
+        return;
+      }
+      
       const requests = await db.collection("requests").find({
         $or: [
           { address: userAddress },
@@ -36,7 +47,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }).toArray();
 
       if(requests.length == 0) {
-        const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
         const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
         const tx = await wallet.sendTransaction({
