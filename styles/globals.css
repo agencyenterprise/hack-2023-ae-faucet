@@ -37,6 +37,7 @@ body {
   justify-content: space-between;
   min-height: 100vh;
   overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
 }
 
 .font-russo-one {

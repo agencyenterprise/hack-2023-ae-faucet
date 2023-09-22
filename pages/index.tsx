@@ -65,6 +65,9 @@ export default function Home() {
     }
   };
 
+  const sendButtonStyle = !captchaToken || !userAddress || !userAddressIsValid || isWaiting ? 
+    "bg-[#6BD9FF] opacity-80" : "bg-gradient-to-r from-[#3DDCFF] to-[#A32FFF]"
+
   return (
     <>
       <HomeBanner />
@@ -73,8 +76,8 @@ export default function Home() {
           <div className="mb-3">
             <input
               type="text"
-              placeholder="Wallet you want to send MATIC to"
-              className="input input-bordered input-primary w-full max-w-xl"
+              placeholder="Paste your wallet address here"
+              className="input input-bordered input-primary w-[495px] max-w-xl bg-white mt-10"
               value={userAddress}
               onChange={handleChangeUserAddress}
               required
@@ -84,24 +87,30 @@ export default function Home() {
             </span>}
           </div>
 
-          <div className="mb-3">
-            <ReCAPTCHA
-              size="normal"
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-              onChange={handleChangeCaptcha}
-              ref={recaptcha}
-            />
-          </div>
+          {userAddress ? (
+            <div className="flex flex-col justify-center items-center mb-3">
+              <ReCAPTCHA
+                size="normal"
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
+                onChange={handleChangeCaptcha}
+                ref={recaptcha}
+              />
+              <button
+                type="submit"
+                className={`mt-3 rounded-md text-center px-16 py-4 text-white text-bold border border-[#6BD9FF] ${sendButtonStyle}`}
+                disabled={!captchaToken || !userAddress || !userAddressIsValid || isWaiting}
+              >
+                {isWaiting ? "Sending, please wait..." : `SEND ME ${process.env.NEXT_PUBLIC_MATIC_AMOUNT} MATIC`}
+              </button>
+            </div>
+          ) : (
+            <p className="text-[#722512] mt-10 text-center">
+              NO LOG-IN NEEDED <br />Send .2 MATIC to the Mumbai network PER DAY
+            </p>
+          )}
 
-          <button
-            type="submit"
-            className="btn w-full rounded-md px-4 py-2 text-white text-bold border border-transparent bg-orange-500 hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-            disabled={!captchaToken || !userAddress || !userAddressIsValid || isWaiting}
-          >
-            {isWaiting ? "Sending, please wait..." : `Send ${process.env.NEXT_PUBLIC_MATIC_AMOUNT} MATIC to Mumbai network`}
-          </button>
-        </form>
-      </div>
+        </form >
+      </div >
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -155,7 +164,7 @@ export default function Home() {
                   </Dialog.Title>
                   <div className="mt-2">
                     {errorMessage ? (
-                      <div className="flex flex-col justify-center item">
+                      <div className="flex flex-col justify-center items-center">
                         <p className="text-sm text-center text-red-500 mt-8 mb-8">
                           {errorMessage}
                         </p>
