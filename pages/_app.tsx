@@ -114,6 +114,7 @@ function MyApp({ Component, pageProps }) {
           </svg>
         </footer>
       </div>
+      <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     </>
   );
 }
