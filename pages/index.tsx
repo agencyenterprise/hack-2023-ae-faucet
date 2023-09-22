@@ -54,7 +54,7 @@ export default function Home() {
 
   const handleChangeUserAddress = (e) => {
     setUserAddress(e.target.value);
-    setUserAddressIsValid(ethers.isAddress(e.target.value));
+    setUserAddressIsValid(ethers.utils.isAddress(e.target.value));
   };
 
   const handleChangeCaptcha = (token: string | null) => {

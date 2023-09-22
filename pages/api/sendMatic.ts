@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { ethers } from 'ethers';
+import { DefenderRelaySigner, DefenderRelayProvider } from '@openzeppelin/defender-relay-client/lib/ethers';
 import clientPromise from '../../mongoClient';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -24,10 +25,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       );
       
       if (response.data.success) { //reCaptcha verification successfull
-        const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+        const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
         const balance = await provider.getBalance(userAddress);
-        
-        if (balance >= ethers.parseEther(process.env.MAX_BALANCE)) {
+
+        if (balance.gte(ethers.utils.parseEther(process.env.MAX_BALANCE))) {
           res.status(200).json({
             success: false,
             message: "Matic Tokens are ideally used to pay for gas, the address you're requesting from has enough to pay for gas.",
@@ -46,11 +47,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }).toArray();
         
       if(requests.length == 0) {
-        const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+        const credentials = {
+          apiKey: process.env.DEFENDER_API_KEY,
+          apiSecret: process.env.DEFENDER_SECRET_KEY
+        };
 
-        const tx = await wallet.sendTransaction({
+        const provider = new DefenderRelayProvider(credentials);
+        const signer = new DefenderRelaySigner(credentials, provider, { speed: 'fast' });
+
+        const tx = await signer.sendTransaction({
           to: userAddress,
-          value: ethers.parseEther(process.env.NEXT_PUBLIC_MATIC_AMOUNT),
+          value: ethers.utils.parseEther(process.env.NEXT_PUBLIC_MATIC_AMOUNT),
         });
         
         db.collection("requests").insertOne({
