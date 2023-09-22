@@ -68,7 +68,7 @@ function MyApp({ Component, pageProps }) {
           className="text-sm text-center text-white uppercase"
         >
           <span className="mr-3">🎉</span>
-          We built and sold a startup. Let's help you next.
+          {"We built and sold a startup. Let's help you next."}
           <span className="ml-3">🎉</span>
         </a>
       </div>
