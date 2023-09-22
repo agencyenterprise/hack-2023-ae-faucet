@@ -30,17 +30,17 @@ function MyApp({ Component, pageProps }) {
         <meta property="og:title" content="AE Mumbai Faucet" />
         <meta
           property="og:description"
-          content="CoGet tokens with the most awesome agency in the world!"
+          content="Get tokens with the most awesome agency in the world!"
         />
         <meta
           property="og:image"
-          content="https://agencyhackathon.com/og.png"
+          content="https://faucet.ae.studio/og.png"
         />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content="https://agencyhackathon.com/"
+          content="https://faucet.ae.studio/"
         />
         <meta property="twitter:title" content="AE Mumbai Faucet" />
         <meta
@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }) {
         />
         <meta
           property="twitter:image"
-          content="https://agencyhackathon.com/og.png"
+          content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
       <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#F8974B] to-[#F85C4B]">
