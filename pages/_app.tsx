@@ -26,12 +26,15 @@ function MyApp({ Component, pageProps }) {
     </div>
     </>) :
     (<>
+      <div className="absolute bottom-20 left-20 hidden lg:block">
+        <ConfettiAnimation/>
+      </div>
       <div className="absolute bottom-74 left-0 hidden lg:block">
-      <ConfettiAnimation/>
-    </div>
-    <div className="absolute bottom-96 right-0 overflow-x-hidden hidden lg:block">
-      <ConfettiAnimation/>
-    </div>
+        <ConfettiAnimation/>
+      </div>
+      <div className="absolute bottom-96 right-0 overflow-x-hidden hidden lg:block">
+        <ConfettiAnimation/>
+      </div>
     </>)
     }
 
