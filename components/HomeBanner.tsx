@@ -23,15 +23,16 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
               </a>
             </span>{' '}
             AGENCY
-            <span className="font-semibold text-[16px]">{" (That's us)"}</span>
+            <span className="font-semibold text-[16px]">{" (THAT'S US)"}</span>
           </h1>
         </div>
       </div>
       {isAwesomeHovered && (
         <div
-          className="text-white text-center font-bold text-[35px] mb-4"
+          className="text-white text-center font-bold text-[30px] mb-4"
           style={{
             padding: '20px',
+            lineHeight: '60px',
             borderRadius: '5px',
             whiteSpace: 'nowrap',
           }}
@@ -47,7 +48,7 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
         style={{
           display: isAwesomeHovered ? 'block' : 'none',
           position: 'absolute',
-          top: '85%',
+          top: '60%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 9999,
