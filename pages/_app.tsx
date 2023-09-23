@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import LeftSideTree from "@/components/LeftSideTree";
 import RightSideTree from "@/components/RightSideTree";
 import { useState } from 'react';
+import ConfettiAnimation from "@/components/lottie/confetti";
+
 
 function MyApp({ Component, pageProps }) {
   const [isAwesomeHovered, setAwesomeHovered] = useState(false);
@@ -15,14 +17,23 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div className={`min-h-screen bg-gradient-to-b ${isAwesomeHovered ? easterBackground : normalBackground} overflow-y-hidden overflow-x-hidden`}>
-      {!isAwesomeHovered && (<>
+      {!isAwesomeHovered ? (<>
       <div className="absolute bottom-0 left-[-150px] blur-sm hidden lg:block">
       <LeftSideTree />
     </div>
     <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden hidden lg:block">
       <RightSideTree />
     </div>
-    </>)}
+    </>) :
+    (<>
+      <div className="absolute bottom-74 left-0 hidden lg:block">
+      <ConfettiAnimation/>
+    </div>
+    <div className="absolute bottom-96 right-0 overflow-x-hidden hidden lg:block">
+      <ConfettiAnimation/>
+    </div>
+    </>)
+    }
 
       <Head>
         <link
@@ -68,6 +79,21 @@ function MyApp({ Component, pageProps }) {
           content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
+      {/* {!isAwesomeHovered && (
+              <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
+              <a
+                href="https://ae.studio"
+                target="noopener _blank"
+                rel="noopener noreferrer"
+                className="text-sm text-center text-white uppercase"
+              >
+                <span className="mr-3">🎉</span>
+                {"We built and sold a startup. Let's help you next."}
+                <span className="ml-3">🎉</span>
+              </a>
+            </div>
+
+      )} */}
       <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
         <a
           href="https://ae.studio"
