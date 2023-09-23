@@ -1,8 +1,8 @@
-import { useState } from 'react'; // Import useState
+import { useState } from 'react';
 
 export default function HomeBanner() {
-  const gifUrl = '/party_parrot.gif'; // Adjust the path as needed
-  const [showText, setShowText] = useState(false); // State to control text visibility
+  const gifUrl = '/party_parrot.gif';
+  const [showText, setShowText] = useState(false);
 
   return (
     <>
@@ -12,18 +12,24 @@ export default function HomeBanner() {
             GET FREE TOKENS FROM THE WORLD'S<br />
             MOST{' '}
             <span
-              className="text-white text-center font-extrabold text-[48px] md:text-[58px] md:leading-[63px]"
-              onMouseEnter={() => setShowText(true)} // Show text on hover
-              onMouseLeave={() => setShowText(false)} // Hide text on hover out
+              onMouseEnter={() => setShowText(true)}
+              onMouseLeave={() => setShowText(false)}
             >
-              AWESOME
+              <a
+                href="https://ae.studio"
+                className="text-white text-center font-extrabold text-[48px] md:text-[58px] md:leading-[63px]"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                AWESOME
+              </a>
             </span>{' '}
             AGENCY
             <span className="font-semibold text-[16px]"> (That's us)</span>
           </h1>
         </div>
       </div>
-      {showText && ( // Render the text only when showText is true
+      {showText && (
         <div
           className="text-white text-center font-bold text-[20px] mb-4"
           style={{
@@ -34,7 +40,7 @@ export default function HomeBanner() {
           }}
         >
           🎉 WE BUILT AND SOLD A STARTUP! 🎉
-          <br></br>
+          <br />
           ... AND CAN DO THE SAME FOR YOU
         </div>
       )}
@@ -42,7 +48,7 @@ export default function HomeBanner() {
         id="gif-container"
         className="flex flex-col items-center"
         style={{
-          display: showText ? 'block' : 'none', // Show the GIF container when showText is true
+          display: showText ? 'block' : 'none',
           position: 'absolute',
           top: '85%',
           left: '50%',
