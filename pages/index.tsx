@@ -11,7 +11,7 @@ const HomeBanner = dynamic(() => import("@/components/HomeBanner"), {
   ssr: false,
 });
 
-export default function Home() {
+export default function Home({setAwesomeHovered, isAwesomeHovered}) {
   const [userAddress, setUserAddress] = useState<string>("");
   const [userAddressIsValid, setUserAddressIsValid] = useState<boolean>(true);
   const [captchaToken, setCaptchaToken] = useState<string>();
@@ -70,7 +70,7 @@ export default function Home() {
 
   return (
     <>
-      <HomeBanner />
+      <HomeBanner setAwesomeHovered={setAwesomeHovered} isAwesomeHovered={isAwesomeHovered}/>
       <div className="flex justify-center space-x-2">
         <form onSubmit={handleSendMatic}>
           <div className="mb-3">
