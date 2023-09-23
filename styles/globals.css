@@ -71,19 +71,20 @@ body {
 
 .awesome-link {
   position: relative;
-  display: inline-block;  /* Makes the link block-level inline */
+  display: inline-block;
 }
 
 
 .awesome-link::after {
   content: '';
   position: absolute;
+  top: 60px; /*potentially suspicious css*/
   bottom: -10px;
   left: 0;
   width: 100%;
   height: 15px;
   background: url('/squiggly.svg') no-repeat center center;
-  background-size: 100%; /* Increase this percentage to stretch the squiggly line */
+  background-size: 100%;
 }
 
 
