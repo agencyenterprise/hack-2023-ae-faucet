@@ -23,7 +23,7 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
               </a>
             </span>{' '}
             AGENCY
-            <span className="font-semibold text-[16px]"> (That's us)</span>
+            <span className="font-semibold text-[16px]">{" (That's us)"}</span>
           </h1>
         </div>
       </div>
