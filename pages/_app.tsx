@@ -82,18 +82,18 @@ function MyApp({ Component, pageProps }) {
           content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
-      <div className={`${!isAwesomeHovered ? `visible` : `invisible`} w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]`}>
-        <a
-          href="https://ae.studio"
-          target="noopener _blank"
-          rel="noopener noreferrer"
-          className="text-sm text-center text-white uppercase"
-        >
-          <span className="mr-3">🎉</span>
-          {"We built and sold a startup. Let's help you next."}
-          <span className="ml-3">🎉</span>
-        </a>
-      </div>
+      <div className={`${!isAwesomeHovered ? `visible` : `invisible`} w-full flex flex-row justify-center items-center !rounded-none px-2 py-4 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]`}>
+    <a
+      href="https://ae.studio"
+      target="noopener _blank"
+      rel="noopener noreferrer"
+      className="text-xl text-center text-white uppercase"
+    >
+      <span style={{ fontSize: '28px' }} className="mr-3">🎉</span>
+      {"We built and sold a startup. Let's help you next."}
+      <span style={{ fontSize: '28px' }} className="ml-3">🎉</span>
+    </a>
+</div>
       <div className="flex flex-col justify-between w-full max-w-screen-xl px-4 mx-auto sm:px-2">
         <Navbar />
         <Component {...{...pageProps, setAwesomeHovered:setAwesomeHovered, isAwesomeHovered:isAwesomeHovered}}/>
