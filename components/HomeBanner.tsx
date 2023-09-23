@@ -1,13 +1,13 @@
-// import { useState } from 'react';
+import Image from 'next/image';
 
-export default function HomeBanner({isAwesomeHovered, setAwesomeHovered}) {
+export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
   const gifUrl = '/party_parrot.gif';
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-4 mb-4 md:items-center md:flex-row">
         <div className="flex flex-col justify-center">
           <h1 className="text-white text-center font-extrabold text-[48px] md:text-[58px] md:leading-[63px]">
-            GET FREE TOKENS FROM THE WORLD'S<br />
+            {"GET FREE TOKENS FROM THE WORLD'S"}<br />
             MOST{' '}
             <span
               onMouseEnter={() => setAwesomeHovered(true)}
@@ -54,7 +54,7 @@ export default function HomeBanner({isAwesomeHovered, setAwesomeHovered}) {
           zIndex: 9999,
         }}
       >
-        <img
+        <Image
           src={gifUrl}
           alt="Awesome GIF"
           width="200"
