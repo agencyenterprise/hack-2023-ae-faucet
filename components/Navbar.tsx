@@ -8,10 +8,10 @@ const Navbar = () => {
           <div className="flex items-center justify-center ">
             <a href="https://ae.studio/" target="noopener _blank" rel="noopener noreferrer">
               <Image
-                src="/aestudio-logo-light.png" // Provide the relative path to the image
+                src="/aestudio-logo-light.svg" // Provide the relative path to the image
                 alt="AE Studio Logo"
-                width={120} // Set the width of the image
-                height={120} // Set the height of the image
+                width={180} // Set the width of the image
+                height={180} // Set the height of the image
               />
             </a>
           </div>
