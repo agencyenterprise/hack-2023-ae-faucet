@@ -49,7 +49,7 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
         style={{
           display: isAwesomeHovered ? 'block' : 'none',
           position: 'absolute',
-          top: '60%',
+          top: '80%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 9999,
