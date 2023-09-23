@@ -79,6 +79,12 @@ body {
   margin-top: 0px; /* Adjust margin for spacing */
 }
 
+.awesome-link:hover::after {
+  background: url('/squiggly_hover.svg') no-repeat center center;
+  background-size: contain;
+}
+
+
 
 html,
 body,
