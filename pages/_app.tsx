@@ -79,22 +79,7 @@ function MyApp({ Component, pageProps }) {
           content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
-      {/* {!isAwesomeHovered && (
-              <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
-              <a
-                href="https://ae.studio"
-                target="noopener _blank"
-                rel="noopener noreferrer"
-                className="text-sm text-center text-white uppercase"
-              >
-                <span className="mr-3">🎉</span>
-                {"We built and sold a startup. Let's help you next."}
-                <span className="ml-3">🎉</span>
-              </a>
-            </div>
-
-      )} */}
-      <div className="w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]">
+      <div className={`${!isAwesomeHovered ? `visible` : `invisible`} w-full flex flex-row justify-center items-center !rounded-none px-2 py-2 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]`}>
         <a
           href="https://ae.studio"
           target="noopener _blank"
