@@ -1,9 +1,7 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-export default function HomeBanner() {
+export default function HomeBanner({isAwesomeHovered, setAwesomeHovered}) {
   const gifUrl = '/party_parrot.gif';
-  const [showText, setShowText] = useState(false);
-
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-4 mb-4 md:items-center md:flex-row">
@@ -12,8 +10,8 @@ export default function HomeBanner() {
             GET FREE TOKENS FROM THE WORLD'S<br />
             MOST{' '}
             <span
-              onMouseEnter={() => setShowText(true)}
-              onMouseLeave={() => setShowText(false)}
+              onMouseEnter={() => setAwesomeHovered(true)}
+              onMouseLeave={() => setAwesomeHovered(false)}
             >
               <a
                 href="https://ae.studio"
@@ -29,7 +27,7 @@ export default function HomeBanner() {
           </h1>
         </div>
       </div>
-      {showText && (
+      {isAwesomeHovered && (
         <div
           className="text-white text-center font-bold text-[20px] mb-4"
           style={{
@@ -48,7 +46,7 @@ export default function HomeBanner() {
         id="gif-container"
         className="flex flex-col items-center"
         style={{
-          display: showText ? 'block' : 'none',
+          display: isAwesomeHovered ? 'block' : 'none',
           position: 'absolute',
           top: '85%',
           left: '50%',

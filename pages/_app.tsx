@@ -6,16 +6,24 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LeftSideTree from "@/components/LeftSideTree";
 import RightSideTree from "@/components/RightSideTree";
+import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
+  const [isAwesomeHovered, setAwesomeHovered] = useState(false);
+  const normalBackground = `from-[#F8974B] to-[#F85C4B]`
+  const easterBackground = `from-[#2FDAFF] to-[#C92FFF]`
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F8974B] to-[#F85C4B] overflow-y-hidden overflow-x-hidden">
+    <div className={`min-h-screen bg-gradient-to-b ${isAwesomeHovered ? easterBackground : normalBackground} overflow-y-hidden overflow-x-hidden`}>
+      {!isAwesomeHovered && (<>
       <div className="absolute bottom-0 left-[-150px] blur-sm hidden lg:block">
-        <LeftSideTree />
-      </div>
-      <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden hidden lg:block">
-        <RightSideTree />
-      </div>
+      <LeftSideTree />
+    </div>
+    <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden hidden lg:block">
+      <RightSideTree />
+    </div>
+    </>)}
+
       <Head>
         <link
           rel="stylesheet"
@@ -74,7 +82,7 @@ function MyApp({ Component, pageProps }) {
       </div>
       <div className="flex flex-col justify-between w-full max-w-screen-xl px-4 mx-auto sm:px-2">
         <Navbar />
-        <Component {...pageProps} />
+        <Component {...{...pageProps, setAwesomeHovered:setAwesomeHovered, isAwesomeHovered:isAwesomeHovered}}/>
         <ToastContainer
           autoClose={5000}
           position="top-center"
