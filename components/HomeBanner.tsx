@@ -20,6 +20,7 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
                 rel="noopener noreferrer"
               >
                 AWESOME
+                <div className="hover-text">Click to learn more</div>
               </a>
             </span>{' '}
             AGENCY
