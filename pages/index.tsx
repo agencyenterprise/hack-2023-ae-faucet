@@ -71,7 +71,7 @@ export default function Home({setAwesomeHovered, isAwesomeHovered}) {
   return (
     <>
       <HomeBanner setAwesomeHovered={setAwesomeHovered} isAwesomeHovered={isAwesomeHovered}/>
-      <div className="flex justify-center space-x-2">
+      {!isAwesomeHovered &&       <div className="flex justify-center space-x-2">
         <form onSubmit={handleSendMatic}>
           <div className="mb-3">
             <input
@@ -108,10 +108,8 @@ export default function Home({setAwesomeHovered, isAwesomeHovered}) {
               NO LOG-IN NEEDED <br />Send .2 MATIC to the Mumbai network PER DAY
             </p>
           )}
-
         </form >
-      </div >
-
+      </div >}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
