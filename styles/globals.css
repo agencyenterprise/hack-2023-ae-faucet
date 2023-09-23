@@ -69,22 +69,28 @@ body {
   font-weight: 400;
 }
 
+.awesome-link {
+  position: relative;
+  display: inline-block;  /* Makes the link block-level inline */
+}
+
+
 .awesome-link::after {
   content: '';
-  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
   width: 100%;
-  height: 10px; /* Adjust height based on squiggly line height */
+  height: 15px;
   background: url('/squiggly.svg') no-repeat center center;
-  background-size: contain;
-  margin-top: 0px; /* Adjust margin for spacing */
+  background-size: 100%; /* Increase this percentage to stretch the squiggly line */
 }
+
 
 .awesome-link:hover::after {
   background: url('/squiggly_hover.svg') no-repeat center center;
-  background-size: contain;
+  background-size: 100%;
 }
-
-
 
 html,
 body,
