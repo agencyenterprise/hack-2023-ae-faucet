@@ -17,27 +17,28 @@ function MyApp({ Component, pageProps }) {
   
   return (
       <div style={{ backgroundImage: isAwesomeHovered ? easterBackground : normalBackground }} className="min-h-screen overflow-y-hidden overflow-x-hidden">
-      {!isAwesomeHovered ? (<>
-      <div className="absolute bottom-0 left-[-150px] blur-sm hidden lg:block">
-      <LeftSideTree />
-    </div>
-    <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden hidden lg:block">
-      <RightSideTree />
-    </div>
-    </>) :
-    (<>
-      <div className="absolute bottom-20 left-20 hidden lg:block">
-        <ConfettiAnimation/>
-      </div>
-      <div className="absolute bottom-74 left-0 hidden lg:block">
-        <ConfettiAnimation/>
-      </div>
-      <div className="absolute bottom-96 right-0 overflow-x-hidden hidden lg:block">
-        <ConfettiAnimation/>
-      </div>
-    </>)
-    }
-
+      {!isAwesomeHovered ? (
+        <>
+          <div className="absolute bottom-0 left-[-150px] blur-sm hidden lg:block">
+            <LeftSideTree />
+          </div>
+          <div className="absolute bottom-0 right-[-180px] blur-sm overflow-x-hidden hidden lg:block">
+            <RightSideTree />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="absolute bottom-20 left-20 hidden lg:block">
+            <ConfettiAnimation isAwesomeHovered={isAwesomeHovered} />
+          </div>
+          <div className="absolute bottom-74 left-0 hidden lg:block">
+            <ConfettiAnimation isAwesomeHovered={isAwesomeHovered} />
+          </div>
+          <div className="absolute bottom-96 right-0 overflow-x-hidden hidden lg:block">
+            <ConfettiAnimation isAwesomeHovered={isAwesomeHovered} />
+          </div>
+        </>
+      )}
       <Head>
         <link
           rel="stylesheet"
