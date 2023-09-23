@@ -12,11 +12,11 @@ import ConfettiAnimation from "@/components/lottie/confetti";
 
 function MyApp({ Component, pageProps }) {
   const [isAwesomeHovered, setAwesomeHovered] = useState(false);
-  const normalBackground = `from-[#F8974B] to-[#F85C4B]`
-  const easterBackground = `from-[#2FDAFF] to-[#C92FFF]`
-
+  const normalBackground = `linear-gradient(to bottom right, #F8974B, #F85C4B)`;
+  const easterBackground = `linear-gradient(to bottom right, #2FDAFF, #C92FFF)`;
+  
   return (
-    <div className={`min-h-screen bg-gradient-to-b ${isAwesomeHovered ? easterBackground : normalBackground} overflow-y-hidden overflow-x-hidden`}>
+      <div style={{ backgroundImage: isAwesomeHovered ? easterBackground : normalBackground }} className="min-h-screen overflow-y-hidden overflow-x-hidden">
       {!isAwesomeHovered ? (<>
       <div className="absolute bottom-0 left-[-150px] blur-sm hidden lg:block">
       <LeftSideTree />
