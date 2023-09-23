@@ -15,7 +15,7 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
             >
               <a
                 href="https://ae.studio"
-                className="text-white text-center font-extrabold text-[48px] md:text-[58px] md:leading-[63px]"
+                className="text-white text-center font-extrabold text-[48px] md:text-[58px] md:leading-[63px] awesome-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >

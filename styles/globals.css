@@ -69,6 +69,17 @@ body {
   font-weight: 400;
 }
 
+.awesome-link::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 10px; /* Adjust height based on squiggly line height */
+  background: url('/squiggly.svg') no-repeat center center;
+  background-size: contain;
+  margin-top: 0px; /* Adjust margin for spacing */
+}
+
+
 html,
 body,
 pre {
