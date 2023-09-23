@@ -29,9 +29,8 @@ export default function HomeBanner({ isAwesomeHovered, setAwesomeHovered }) {
       </div>
       {isAwesomeHovered && (
         <div
-          className="text-white text-center font-bold text-[20px] mb-4"
+          className="text-white text-center font-bold text-[35px] mb-4"
           style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
             padding: '20px',
             borderRadius: '5px',
             whiteSpace: 'nowrap',
