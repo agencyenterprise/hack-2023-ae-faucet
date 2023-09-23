@@ -11,7 +11,7 @@ const HomeBanner = dynamic(() => import("@/components/HomeBanner"), {
   ssr: false,
 });
 
-export default function Home({setAwesomeHovered, isAwesomeHovered}) {
+export default function Home({ setAwesomeHovered, isAwesomeHovered }) {
   const [userAddress, setUserAddress] = useState<string>("");
   const [userAddressIsValid, setUserAddressIsValid] = useState<boolean>(true);
   const [captchaToken, setCaptchaToken] = useState<string>();
@@ -65,13 +65,13 @@ export default function Home({setAwesomeHovered, isAwesomeHovered}) {
     }
   };
 
-  const sendButtonStyle = !captchaToken || !userAddress || !userAddressIsValid || isWaiting ? 
+  const sendButtonStyle = !captchaToken || !userAddress || !userAddressIsValid || isWaiting ?
     "bg-[#6BD9FF] opacity-80" : "bg-gradient-to-r from-[#3DDCFF] to-[#A32FFF]"
 
   return (
     <>
-      <HomeBanner setAwesomeHovered={setAwesomeHovered} isAwesomeHovered={isAwesomeHovered}/>
-      {!isAwesomeHovered &&       <div className="flex justify-center space-x-2">
+      <HomeBanner setAwesomeHovered={setAwesomeHovered} isAwesomeHovered={isAwesomeHovered} />
+      {!isAwesomeHovered && <div className="flex justify-center space-x-2">
         <form onSubmit={handleSendMatic}>
           <div className="mb-3">
             <input
@@ -156,7 +156,15 @@ export default function Home({setAwesomeHovered, isAwesomeHovered}) {
                         <div className="h-16 flex justify-center">
                           <LottieAnimation />
                         </div>
-                        <p className="text-center">Your MATIC is on the way...</p>
+                        <p className="text-center">
+                          Your MATIC is on the
+                          <a
+                            href={`https://mumbai.polygonscan.com/tx/${transactionHash}`}
+                            target="noopener _blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-400"
+                          > way</a>...
+                        </p>
                       </div>
                     )}
                   </Dialog.Title>
