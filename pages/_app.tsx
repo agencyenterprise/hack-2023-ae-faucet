@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }) {
           content="https://faucet.ae.studio/og.png"
         ></meta>
       </Head>
-      <div className={`${!isAwesomeHovered ? `visible` : `invisible`} w-full flex flex-row justify-center items-center !rounded-none px-2 py-4 bg-gradient-to-b from-[#2FDAFF] to-[#C92FFF]`}>
+      <div className={`${!isAwesomeHovered ? `visible` : `invisible`} w-full flex flex-row justify-center items-center !rounded-none px-2 py-4 bg-gradient-to-br from-[#2FDAFF] to-[#C92FFF]`}>
     <a
       href="https://ae.studio"
       target="noopener _blank"
