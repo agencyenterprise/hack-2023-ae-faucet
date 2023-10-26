@@ -7,7 +7,7 @@ const Navbar = () => {
         <div className="first-letter:items-center flex-1 sm:items-stretch sm:justify-start">
           <div className="flex items-center justify-center ">
             <a
-              href="https://ae.studio?utm_source=[https://faucet.ae.studio/]"
+              href="https://ae.studio?utm_source=https://faucet.ae.studio/"
               target="noopener _blank"
               rel="noopener noreferrer"
             >
