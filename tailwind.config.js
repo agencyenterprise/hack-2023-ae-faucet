@@ -3,11 +3,11 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/sds-projects/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      colors: {
-      },
+      colors: {},
     },
   },
 
@@ -15,15 +15,15 @@ module.exports = {
     require("daisyui"),
     require("@headlessui/tailwindcss"),
     function ({ addVariant }) {
-      addVariant('child', '& > *');
-    }
+      addVariant("child", "& > *");
+    },
   ],
   daisyui: {
     themes: [
       {
         extended: {
-          primary: '#ffa500',
-          secondary: '#765DBF',
+          primary: "#ffa500",
+          secondary: "#765DBF",
           // ".btn"
         },
       },

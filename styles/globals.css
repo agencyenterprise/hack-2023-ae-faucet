@@ -17,7 +17,8 @@ button#headlessui-switch-\:r1\: > span {
   border-radius: 9999px !important;
 }
 
-.btn[disabled], .btn:disabled {
+.btn[disabled],
+.btn:disabled {
   --tw-border-opacity: 0.2;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
@@ -83,30 +84,29 @@ body {
   width: 100%;
   font-size: 20px;
   font-weight: normal;
-  color: #FF8D8B; /* Change the color to peach or any other color you prefer */
+  color: #ff8d8b; /* Change the color to peach or any other color you prefer */
 }
 
 .awesome-link::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 60px; /* Adjust the top value to align the squiggly line */
   bottom: -10px;
   left: 0;
   width: 100%;
   height: 15px;
-  background: url('/squiggly.svg') no-repeat center center;
+  background: url("/squiggly.svg") no-repeat center center;
   background-size: 100%;
 }
 
 .awesome-link:hover::after {
-  background: url('/squiggly_hover.svg') no-repeat center center;
+  background: url("/squiggly_hover.svg") no-repeat center center;
   background-size: 100%;
 }
 
 .awesome-link:hover .hover-text {
   display: block;
 }
-
 
 html,
 body,
